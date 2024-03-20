@@ -1,0 +1,12 @@
+import os
+
+
+TOKEN = os.environ.get('TOKEN')
+
+POSTGRES_HOST = os.environ.get('POSTGRES_HOST')
+POSTGRES_PORT = os.environ.get('POSTGRES_PORT')
+POSTGRES_USER = os.environ.get('POSTGRES_USER')
+POSTGRES_PASSWORD = os.environ.get('POSTGRES_PASSWORD')
+POSTGRES_DATABASE = os.environ.get('POSTGRES_DATABASE')
+
+API_KEY = 'fUp35qGSN9P52X8-HSnv4E5v-7ks2R38s-B5hvxyJt-R69JjXVY7zt5DwV'

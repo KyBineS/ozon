@@ -1,0 +1,43 @@
+version: '3.8'
+
+services:
+  postgres:
+    build: databases/postgres/
+    restart: unless-stopped
+    ports:
+      - "5432:5432"
+    env_file:
+      - .env
+    environment:
+      POSTGRES_HOST: ${POSTGRES_HOST}
+      POSTGRES_PORT: ${POSTGRES_PORT}
+      POSTGRES_USER: ${POSTGRES_USER}
+      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD}
+      POSTGRES_DB: ${POSTGRES_DATABASE}
+
+  main:
+    build: src/
+    command: python main.py
+    restart: unless-stopped
+    env_file:
+      - .env
+    volumes:
+      - ./src/cookies:/app/cookies
+
+  autoreg:
+    build: src/
+    command: python autoreg.py
+    restart: unless-stopped
+    env_file:
+      - .env
+    volumes:
+      - ./src/cookies:/app/cookies
+
+  telegram:
+    build: src/
+    command: python telegram.py
+    restart: unless-stopped
+    env_file:
+      - .env
+    depends_on:
+      - postgres
